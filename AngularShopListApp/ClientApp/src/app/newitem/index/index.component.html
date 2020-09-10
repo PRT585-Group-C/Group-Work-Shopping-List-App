@@ -1,0 +1,28 @@
+<div class="container">
+    <h1>Angular New Item List</h1>
+  
+    <a href="#" routerLink="/newitem/create/" class="btn btn-success">Create New Item</a>
+    
+    <table class="table table-bordered">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>barcode</th>
+        <th>Size</th>
+        <th>Price</th>
+        <!-- <th width="220px">Action</th> -->
+      </tr>
+      <tr *ngFor="let newitem of newitems">
+        <td>{{ newitem.id }}</td>
+        <td>{{ newitem.name }}</td>
+        <td>{{ newitem.barcode }}</td>
+        <td>{{ newitem.size }}</td>
+        <td>{{ newitem.price }}</td>
+        <!-- <td>
+          <a href="#" [routerLink]="['/post/', post.id, 'view']" class="btn btn-info">View</a>
+          <a href="#" [routerLink]="['/post/', post.id, 'edit']" class="btn btn-primary">Edit</a>
+          <button type="button" (click)="deletePost(post.id)" class="btn btn-danger">Delete</button>
+        </td>  -->
+      </tr>
+    </table>
+ </div>
