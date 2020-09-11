@@ -4,8 +4,7 @@ using System.Linq;
 using GroupCWebAPI._BAL.Models;
 using GroupCWebAPI._DAL.Models;
 using GroupCWebAPI._DAL.Services;
-
-
+using AngularShopListApp.Data;
 
 namespace GroupCWebAPI._DAL.Services
 {
@@ -22,9 +21,9 @@ namespace GroupCWebAPI._DAL.Services
 
     public class DALServices : IDALService
     {
-        private readonly GroupCContext context;
+        private readonly ApplicationDbContext context;
 
-        public DALServices(GroupCContext _context)
+        public DALServices(ApplicationDbContext _context)
         {
             this.context = _context;
         }

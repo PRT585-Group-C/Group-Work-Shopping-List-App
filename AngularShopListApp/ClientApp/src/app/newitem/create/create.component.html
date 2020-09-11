@@ -1,0 +1,55 @@
+<div class="container">
+    <h1>Create New Post</h1>
+  
+    <a href="#" routerLink="/newitem/index" class="btn btn-primary">Back</a>
+        
+    <form [formGroup]="form" (ngSubmit)="submit()">
+  
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input 
+                formControlName="name"
+                id="name" 
+                type="text" 
+                class="form-control">
+            <div *ngIf="f.name.touched && f.name.invalid" class="alert alert-danger">
+                <div *ngIf="f.name.errors.required">Name is required.</div>
+            </div>
+        </div>
+  
+        <div class="form-group">
+            <label for="barcode">Barcode:</label>
+            <input 
+                formControlName="barcode"
+                id="barcode" 
+                type="text" 
+                class="form-control">
+            <div *ngIf="f.barcode.touched && f.barcode.invalid" class="alert alert-danger">
+                <div *ngIf="f.barcode.errors.required">Barcode is required.</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="size">Size:</label>
+            <input 
+                formControlName="size"
+                id="size" 
+                type="text" 
+                class="form-control">
+           
+            </div>
+
+        <div class="form-group">
+            <label for="price">Price:</label>
+            <input 
+                formControlName="price"
+                id="price" 
+                type="text" 
+                class="form-control">
+            <div *ngIf="f.price.touched && f.price.invalid" class="alert alert-danger">
+                <div *ngIf="f.price.errors.required">Barcode is required.</div>
+            </div>
+        </div>
+  
+        <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>
+    </form>
+</div>
