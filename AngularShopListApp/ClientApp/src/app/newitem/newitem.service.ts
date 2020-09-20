@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError ,of} from 'rxjs';
 import { catchError } from 'rxjs/operators';
-
 import { Newitem } from './newitem';
 
 
@@ -37,6 +35,17 @@ export class NewitemService {
       .pipe(
         catchError(this.errorHandler)
       )
+  }
+
+  /* GET itmes whose name contains search term */
+  searchItems(term: string): Observable<Newitem[]> {
+    if (!term.trim()) {
+      // if not search term, return empty term array.
+      return of([]);
+    }
+    return this.httpClient.get<Newitem[]>(`${this.apiURL}/?name=${term}`).pipe(
+      catchError(this.errorHandler)
+    );
   }
 
   errorHandler(error) {
