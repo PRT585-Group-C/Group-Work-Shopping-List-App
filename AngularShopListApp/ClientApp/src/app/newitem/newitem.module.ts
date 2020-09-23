@@ -8,9 +8,10 @@ import { CreateComponent } from './create/create.component';
 import { EditComponent } from './edit/edit.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ItemSearchComponent } from './item-search/item-search.component';
 
 @NgModule({
-  declarations: [IndexComponent, ViewComponent, CreateComponent, EditComponent],
+  declarations: [IndexComponent, ViewComponent, CreateComponent, EditComponent, ItemSearchComponent],
   imports: [
     CommonModule,
     NewitemRoutingModule,
