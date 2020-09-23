@@ -10,7 +10,7 @@
         <th>barcode</th>
         <th>Size</th>
         <th>Price</th>
-        <!-- <th width="220px">Action</th> -->
+         <th width="220px">Action</th>
       </tr>
       <tr *ngFor="let newitem of newitems">
         <td>{{ newitem.id }}</td>
@@ -18,11 +18,11 @@
         <td>{{ newitem.barcode }}</td>
         <td>{{ newitem.size }}</td>
         <td>{{ newitem.price }}</td>
-        <!-- <td>
-          <a href="#" [routerLink]="['/post/', post.id, 'view']" class="btn btn-info">View</a>
-          <a href="#" [routerLink]="['/post/', post.id, 'edit']" class="btn btn-primary">Edit</a>
+         <td>
+          <a href="#" [routerLink]="['/newitem/', newitem.id, 'view']" class="btn btn-info">View</a>
+          <a href="#" [routerLink]="['/newitem/', newitem.id, 'edit']" class="btn btn-primary">Edit</a>
           <button type="button" (click)="deletePost(post.id)" class="btn btn-danger">Delete</button>
-        </td>  -->
+        </td>  
       </tr>
     </table>
  </div>

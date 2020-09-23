@@ -5,6 +5,7 @@ using GroupCWebAPI._BAL.Models;
 using GroupCWebAPI._DAL.Models;
 using GroupCWebAPI._DAL.Services;
 using AngularShopListApp.Data;
+using System;
 
 namespace GroupCWebAPI._DAL.Services
 {
@@ -15,8 +16,8 @@ namespace GroupCWebAPI._DAL.Services
         void UpdateNewItem(NewItemBLLModel model);
         void AddNewItem(NewItemBLLModel model);
 
-
-
+        NewItemBLLModel findNewItem(long id);
+        List<NewItemBLLModel> searchItems(string name);
     }
 
     public class DALServices : IDALService
@@ -72,12 +73,59 @@ namespace GroupCWebAPI._DAL.Services
 
         public void DeleteNewItem(long id)
         {
-            throw new System.NotImplementedException();
+            var item = context.NewItem
+    .Where(p => p.Id == id).FirstOrDefault();
+            if (item != null)
+            {
+                context.Entry(item).State = EntityState.Deleted;
+                context.SaveChanges();
+            }
+
+
+
         }
 
-        public void UpdateNewItem(NewItemBLLModel model)
+        public List<NewItemBLLModel> searchItems(string name)
         {
-            throw new System.NotImplementedException();
+
+            var movies = from m in context.NewItem
+                         select m;
+
+            if (!String.IsNullOrEmpty(name))
+            {
+                movies = movies.Where(s => s.Name.Contains(name));
+            }
+
+            var returnObject = new List<NewItemBLLModel>();
+
+            foreach (var item in movies)
+            {
+                returnObject.Add(new NewItemBLLModel()
+                {
+                    Id = item.Id,
+                    Name = item.Name,
+                    createdDate = item.createdDate,
+                    Size = item.Size,
+                    Price = item.Price
+                });
+            }
+
+            return returnObject;
+        }
+
+            public void UpdateNewItem(NewItemBLLModel model)
+        {
+            var item = context.NewItem
+          .Where(p => p.Id == model.Id).FirstOrDefault();
+            if (item != null)
+            {
+                context.Entry(item).CurrentValues.SetValues(model);
+                context.SaveChanges();
+            }
+            else
+            {
+                throw new KeyNotFoundException();
+            }
         }
 
         public void AddNewItem(NewItemBLLModel model)
@@ -92,6 +140,29 @@ namespace GroupCWebAPI._DAL.Services
             };
             context.NewItem.Add(item);
             context.SaveChanges();
+        }
+
+        NewItemBLLModel IDALService.findNewItem(long id)
+        {
+            //var item = context.NewItem.FindAsync(id);
+            var item = context.NewItem
+              .Where(p => p.Id == id).FirstOrDefault();
+          NewItemBLLModel returnObject = null  ;
+            if (item != null)
+            {
+                returnObject = new NewItemBLLModel()
+                {
+                    Id = item.Id,
+                    Name = item.Name,
+                    createdDate = item.createdDate,
+                    Size = item.Size,
+                    Price = item.Price
+                };
+
+            }
+
+
+            return returnObject;
         }
     }
 }

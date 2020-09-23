@@ -39,6 +39,13 @@ export class NewitemService {
       )
   }
 
+  find(id): Observable<Newitem> {
+    return this.httpClient.get<Newitem>(this.apiURL + '/NewItems/' + id)
+      .pipe(
+        catchError(this.errorHandler)
+      )
+  }
+
   errorHandler(error) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
@@ -48,4 +55,19 @@ export class NewitemService {
     }
     return throwError(errorMessage);
   }
+
+  update(id, newiem): Observable<Newitem> {
+    return this.httpClient.put<Newitem>(this.apiURL + '/NewItems/' + id, JSON.stringify(newiem), this.httpOptions)
+      .pipe(
+        catchError(this.errorHandler)
+      )
+  }
+
+  delete(id) {
+    return this.httpClient.delete<Newitem>(this.apiURL + '/NewItems/' + id, this.httpOptions)
+      .pipe(
+        catchError(this.errorHandler)
+      )
+  }
+
 }

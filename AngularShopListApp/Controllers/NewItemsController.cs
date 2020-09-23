@@ -7,6 +7,7 @@ using Microsoft.Extensions.Logging;
 using GroupCWebAPI._BAL.Models;
 using GroupCWebAPI._BAL.Services;
 using GroupCWebAPI.ViewModels;
+using System.Media;
 
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -67,53 +68,118 @@ namespace GroupCWebAPI.Controllers
             return Ok(vmList);
     
         }
-        /*
-       // GET: api/TodoItems/5
-       [HttpGet("{id}")]
-       public Task ActionResult<IEnumerable<NewItemViewModel>> GetNewItem(int id)
-       {
-           var todoItem = await _context.TodoItems.FindAsync(id);
 
-           if (todoItem == null)
+
+
+        // GET: api/NewItems/"test"
+        [HttpGet("search/{name}")]
+        // public  Task<ActionResult<IEnumerable<NewItemViewModel>>> GetTodoItems()
+        public ActionResult<IEnumerable<NewItemViewModel>> SearchItems( string name)
+
+        {
+
+             var newIntemBModels = _NewItemService.searchItems(name);
+
+         
+            var vmList = new List<NewItemViewModel>();
+            foreach (var item in newIntemBModels)
+            {
+                var vmNewItem = new NewItemViewModel();
+
+
+                vmNewItem.Id = item.Id;
+                vmNewItem.Name = item.Name.ToUpper();
+                vmNewItem.createdDate = item.createdDate; //.ToString();
+                vmNewItem.Size = item.Size;
+                vmNewItem.Price = item.Price;
+                /*
+                if (item.Salary > 5)
+                {
+                    vmEmployee.SalaryColor = "green";
+                }
+                else
+                {
+                    vmEmployee.SalaryColor = "red";
+                }
+                */
+                vmList.Add(vmNewItem);
+            }
+
+
+            return Ok(vmList);
+
+        }
+
+        // GET: api/TodoItems/5
+        [HttpGet("{id}")]
+       //public Task ActionResult<IEnumerable<NewItemViewModel>> GetNewItem(int id)
+            public ActionResult<IEnumerable<NewItemViewModel>> GetNewItem(int id)
+        {
+          // var todoItem = await _context.TodoItems.FindAsync(id);
+            var todoItem = _NewItemService.FetchById(id);
+
+
+            if (todoItem == null)
            {
                return NotFound();
            }
 
-           return todoItem;
+            var vmNewItem = new NewItemViewModel();
+
+
+            vmNewItem.Id = todoItem.Id;
+            vmNewItem.Name = todoItem.Name.ToUpper();
+            vmNewItem.createdDate = todoItem.createdDate; //.ToString();
+            vmNewItem.Size = todoItem.Size;
+            vmNewItem.Price = todoItem.Price;
+
+            var vmList = new List<NewItemViewModel>();
+            vmList.Add(vmNewItem);
+            return vmList;
        }
+         
+        // PUT: api/TodoItems/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for
+        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        [HttpPut("{id}")]
 
-    // PUT: api/TodoItems/5
-    // To protect from overposting attacks, enable the specific properties you want to bind to, for
-    // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-    [HttpPut("{id}")]
-    public async Task<IActionResult> PutTodoItem(long id, TodoItem todoItem)
-    {
-        if (id != todoItem.Id)
+        public ActionResult PutTodoItem(int id, NewItemViewModel newItem)
+        //public async Task<IActionResult> PutTodoItem(long id, TodoItem todoItem)
         {
-            return BadRequest();
-        }
-
-        _context.Entry(todoItem).State = EntityState.Modified;
-
-        try
-        {
-            await _context.SaveChangesAsync();
-        }
-        catch (DbUpdateConcurrencyException)
-        {
-            if (!TodoItemExists(id))
-            {
-                return NotFound();
+   
+      
+           if (id != newItem.Id)
+           {
+                return BadRequest();
             }
-            else
-            {
-                throw;
-            }
+            /*
+             try
+              {
+                  await _context.SaveChangesAsync();
+              }
+              catch (DbUpdateConcurrencyException)
+              {
+                  if (!TodoItemExists(id))
+                  {
+                      return NotFound();
+                  }
+                  else
+                  {
+                      throw;
+                  }
+              }*/
+            var newIntemBModels = new NewItemBLLModel();
+            newIntemBModels.Name = newItem.Name.ToUpper();
+            //newIntemBModels.createdDate = newItem.createdDate; //.ToString();
+            newIntemBModels.Id = newItem.Id;
+            newIntemBModels.Size = newItem.Size;
+            newIntemBModels.Price = newItem.Price;
+            _NewItemService.Update(newIntemBModels);
+
+            return Ok(newIntemBModels);
         }
 
-        return NoContent();
-    }
-    */
+
 
         // POST: api/NewItems
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
@@ -133,27 +199,30 @@ namespace GroupCWebAPI.Controllers
             return Ok(newIntemBModels);
             //return CreatedAtAction("GetTodoItem", new { id = todoItem.Id }, todoItem);
         }
-        /*
-     // DELETE: api/TodoItems/5
-     [HttpDelete("{id}")]
-     public async Task<ActionResult<TodoItem>> DeleteTodoItem(long id)
-     {
+
+        // DELETE: api/TodoItems/5
+        [HttpDelete("{id}")]
+        //  public async Task<ActionResult<TodoItem>> DeleteTodoItem(long id)
+        public ActionResult DeleteTodoItem(int id)
+        {
+            /*
          var todoItem = await _context.TodoItems.FindAsync(id);
          if (todoItem == null)
          {
              return NotFound();
          }
+            */
 
-         _context.TodoItems.Remove(todoItem);
-         await _context.SaveChangesAsync();
+            _NewItemService.Delete(id);
 
-         return todoItem;
-     }
-
+            return Ok(id);
+        }
+       /*
      private bool TodoItemExists(long id)
      {
          return _context.TodoItems.Any(e => e.Id == id);
      }
-     */
+        */
+     
     }
 }

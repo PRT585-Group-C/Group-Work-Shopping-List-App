@@ -8,9 +8,9 @@ import { EditComponent } from './edit/edit.component';
 const routes: Routes = [
   { path: 'newitem', redirectTo: 'newitem/index', pathMatch: 'full'},
   { path: 'newitem/index', component: IndexComponent },
-  { path: 'newitem/:postId/view', component: ViewComponent },
+  { path: 'newitem/:newiemId/view', component: ViewComponent },
   { path: 'newitem/create', component: CreateComponent },
-  { path: 'newitem/:postId/edit', component: EditComponent } 
+  { path: 'newitem/:newiemId/edit', component: EditComponent } 
 ];
 
 @NgModule({
