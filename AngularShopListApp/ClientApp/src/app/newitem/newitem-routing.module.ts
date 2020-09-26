@@ -9,8 +9,9 @@ import { ItemSearchComponent } from '../newitem/item-search/item-search.componen
 const routes: Routes = [
   { path: 'newitem', redirectTo: 'newitem/index', pathMatch: 'full'},
   { path: 'newitem/index', component: IndexComponent },
-  { path: 'newitem/:postId/view', component: ViewComponent },
+  { path: 'newitem/:newiemId/view', component: ViewComponent },
   { path: 'newitem/create', component: CreateComponent },
+  { path: 'newitem/:newiemId/edit', component: EditComponent }, 
   { path: 'newitem/item-search', component: ItemSearchComponent },
   { path: 'newitem/:postId/edit', component: EditComponent } 
 ];

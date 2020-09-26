@@ -15,7 +15,7 @@ namespace GroupCWebAPI._BAL.Services
         void Update(NewItemBLLModel model);
         void Add(NewItemBLLModel model);
         void Delete(long id);
-
+        List<NewItemBLLModel> searchItems(string name);
     }
 
     public class NewItemService : InewItemService
@@ -33,15 +33,16 @@ namespace GroupCWebAPI._BAL.Services
         NewItemBLLModel InewItemService.FetchById(long id)
         {
             var result = new NewItemBLLModel();
-            //try
-            //{
+           try
+            {
             //    result = _dataAccessService.f.FetchEmployee(id);
+            result = _dataAccessService.findNewItem(id);
 
-            //}
-            //catch (Exception e)
-            //{
-            //    //
-            //}
+            }
+            catch (Exception e)
+            {
+                
+            }
 
             return result;
         }
@@ -63,7 +64,8 @@ namespace GroupCWebAPI._BAL.Services
 
         public void Update(NewItemBLLModel model)
         {
-            throw new System.NotImplementedException();
+
+            _dataAccessService.UpdateNewItem(model);
         }
 
         public void Add(NewItemBLLModel model)
@@ -74,10 +76,15 @@ namespace GroupCWebAPI._BAL.Services
 
         public void Delete(long id)
         {
-            throw new System.NotImplementedException();
+            _dataAccessService.DeleteNewItem(id);
         }
 
-     
+
+        List<NewItemBLLModel> InewItemService.searchItems(string name)
+        {
+           return _dataAccessService.searchItems(name);
+        }
+       
     }
 
 }
