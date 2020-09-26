@@ -32,7 +32,8 @@ import { NewitemModule } from './newitem/newitem.module';
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthorizeGuard] },
+      { path: 'fetch-data', component: FetchDataComponent, },
+      // canActivate: [AuthorizeGuard] //
     ])
   ],
   providers: [

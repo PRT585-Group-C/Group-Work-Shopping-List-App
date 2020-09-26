@@ -1,23 +1,28 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable, Subject } from 'rxjs';
+
+import {
+  debounceTime, distinctUntilChanged, switchMap
+} from 'rxjs/operators';
+
+import { Newitem } from '../newitem/newitem';
+import { NewitemService } from '../newitem/newitem.service';
 
 @Component({
   selector: 'app-fetch-data',
   templateUrl: './fetch-data.component.html'
 })
 export class FetchDataComponent {
-  public forecasts: WeatherForecast[];
+  items: Newitem[];
 
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    http.get<WeatherForecast[]>(baseUrl + 'weatherforecast').subscribe(result => {
-      this.forecasts = result;
-    }, error => console.error(error));
+
+  constructor(private itemService: NewitemService) { }
+
+  
+  ngOnInit() {
+    this.itemService.getAll()
+      .subscribe(s => this.items = s);
   }
-}
 
-interface WeatherForecast {
-  date: string;
-  temperatureC: number;
-  temperatureF: number;
-  summary: string;
 }

@@ -38,6 +38,11 @@ export class ItemSearchComponent implements OnInit {
       // switch to new search observable each time the term changes
       switchMap((term: string) => this.itemService.searchItems(term)),
     );
+
+    this.itemService.searchItems("sss").subscribe((data: Newitem[]) => {
+      console.log('data');
+      console.log(data);
+    }) 
   }
 
 }

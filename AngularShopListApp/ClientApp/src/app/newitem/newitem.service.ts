@@ -43,7 +43,8 @@ export class NewitemService {
       // if not search term, return empty term array.
       return of([]);
     }
-    return this.httpClient.get<Newitem[]>(`${this.apiURL}/?name=${term}`).pipe(
+    return this.httpClient.get<Newitem[]>(`${this.apiURL}/NewItems`).pipe(
+      
       catchError(this.errorHandler)
     );
   }
