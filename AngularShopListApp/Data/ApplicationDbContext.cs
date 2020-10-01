@@ -26,7 +26,7 @@ namespace GroupCWebAPI.Data
 
         public DbSet<ItemList> ItemLists { get; set; }
        public DbSet<ItemListItem> ItemListItems { get; set; }
-
+       public DbSet<PaymentDetail> PaymentDetails { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
       {
@@ -63,5 +63,5 @@ namespace GroupCWebAPI.Data
             
         }
 
-        public DbSet<PaymentDetail> PaymentDetails { get; set;  }
+       
     }
