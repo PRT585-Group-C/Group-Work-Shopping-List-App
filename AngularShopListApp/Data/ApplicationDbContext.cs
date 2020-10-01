@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GroupCWebAPI.ViewModels;
+using GroupCWebAPI.Models;
 
 namespace GroupCWebAPI.Data
 {
@@ -61,4 +62,6 @@ namespace GroupCWebAPI.Data
         }
             
         }
+
+        public DbSet<PaymentDetail> PaymentDetails { get; set;  }
     }
