@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GroupCWebAPI.ViewModels;
+using GroupCWebAPI.Models;
 
 namespace AngularShopListApp.Data
 {
@@ -22,5 +23,7 @@ namespace AngularShopListApp.Data
 
         public DbSet<NewItem> NewItem { get; set; }
         public DbSet<ItemModel> Items { get; set; }
+
+        public DbSet<PaymentDetail> PaymentDetails { get; set;  }
     }
 }
