@@ -4,14 +4,16 @@ using GroupCWebAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AngularShopListApp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200930044626_itemListItems5")]
+    partial class itemListItems5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -84,7 +86,44 @@ namespace AngularShopListApp.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("GroupCWebAPI.ViewModels.Item", b =>
+            modelBuilder.Entity("GroupCWebAPI.ViewModels.ItemListItemsModel", b =>
+                {
+                    b.Property<int>("ItemListId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.HasKey("ItemListId", "Id");
+
+                    b.HasIndex("Id");
+
+                    b.ToTable("ItemListItemsModel");
+                });
+
+            modelBuilder.Entity("GroupCWebAPI.ViewModels.ItemListModel", b =>
+                {
+                    b.Property<int>("ItemListId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("createdDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("createdUser")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ItemListId");
+
+                    b.ToTable("ItemLists");
+                });
+
+            modelBuilder.Entity("GroupCWebAPI.ViewModels.ItemModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -111,43 +150,6 @@ namespace AngularShopListApp.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Items");
-                });
-
-            modelBuilder.Entity("GroupCWebAPI.ViewModels.ItemList", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("createdDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("createdUser")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ItemLists");
-                });
-
-            modelBuilder.Entity("GroupCWebAPI.ViewModels.ItemListItem", b =>
-                {
-                    b.Property<int>("ItemId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ItemListId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ItemId", "ItemListId");
-
-                    b.HasIndex("ItemListId");
-
-                    b.ToTable("ItemListItems");
                 });
 
             modelBuilder.Entity("GroupCWebAPI._DAL.Models.NewItem", b =>
@@ -394,16 +396,16 @@ namespace AngularShopListApp.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("GroupCWebAPI.ViewModels.ItemListItem", b =>
+            modelBuilder.Entity("GroupCWebAPI.ViewModels.ItemListItemsModel", b =>
                 {
-                    b.HasOne("GroupCWebAPI.ViewModels.Item", "Item")
-                        .WithMany("ItemListItem")
-                        .HasForeignKey("ItemId")
+                    b.HasOne("GroupCWebAPI.ViewModels.ItemModel", "Item")
+                        .WithMany("ItemListItemsModel")
+                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("GroupCWebAPI.ViewModels.ItemList", "ItemList")
-                        .WithMany("ItemListItem")
+                    b.HasOne("GroupCWebAPI.ViewModels.ItemListModel", "ItemList")
+                        .WithMany("ItemListItemsModel")
                         .HasForeignKey("ItemListId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

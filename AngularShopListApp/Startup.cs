@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using GroupCWebAPI._DAL.Services;
 using GroupCWebAPI._BAL.Services;
+using GroupCWebAPI.Data;
 
 namespace AngularShopListApp
 {

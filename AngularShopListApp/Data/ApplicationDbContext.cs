@@ -10,7 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using GroupCWebAPI.ViewModels;
 
-namespace AngularShopListApp.Data
+namespace GroupCWebAPI.Data
 {
     public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>
     {
@@ -21,6 +21,44 @@ namespace AngularShopListApp.Data
         }
 
         public DbSet<NewItem> NewItem { get; set; }
-        public DbSet<ItemModel> Items { get; set; }
+        public DbSet<Item> Items { get; set; }
+
+        public DbSet<ItemList> ItemLists { get; set; }
+       public DbSet<ItemListItem> ItemListItems { get; set; }
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+      {
+           base.OnModelCreating(modelBuilder);
+          
+            modelBuilder.Entity<ItemListItem>()
+                .HasKey(t => new { t.ItemId, t.ItemListId });
+            /*
+           modelBuilder.Entity<ItemListItemsModel>()
+               .HasOne(pt => pt.Item)
+               .WithMany(p => p.ItemListItemsModel)
+               .HasForeignKey(pt => pt.Id);
+
+           modelBuilder.Entity<ItemListItemsModel>()
+               .HasOne(pt => pt.ItemList)
+               .WithMany(t => t.ItemListItemsModel)
+               .HasForeignKey(pt => pt.ItemListId);
+       
+
+            modelBuilder.Entity("GroupCWebAPI.ViewModels.ItemListItemsModel", b =>
+            {
+                b.HasOne("GroupCWebAPI.ViewModels.ItemModel", "ItemModel")
+                    .WithMany("ItemListItemsModel")
+                    .HasForeignKey("Id")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
+                b.HasOne("GroupCWebAPI.ViewModels.ItemListModel", "ItemListModel")
+                    .WithMany("ItemListItemsModel")
+                    .HasForeignKey("SkillId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
+            });  */
+        }
+            
+        }
     }
-}

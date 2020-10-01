@@ -14,49 +14,71 @@ namespace GroupCWebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ItemsModelController : ControllerBase
+    public class ItemListModelController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
 
-        public ItemsModelController(ApplicationDbContext _context)
+        public ItemListModelController(ApplicationDbContext _context)
         {
             this._context = _context;
         }
 
-        // GET: api/Items
+        // GET: api/ItemsList
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Item>>> GetItems()
+        public async Task<ActionResult<IEnumerable<ItemList>>> GetItemLists()
         {
-            return await _context.Items.ToListAsync();
+            return await _context.ItemLists.ToListAsync();
         }
 
         // GET: api/Items/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Item>> GetItems(int id)
+        public async Task<ActionResult<ItemList>> GetItemLists(int id)
         {
-            var items = await _context.Items.FindAsync(id);
+            var ItemLists = await _context.ItemLists.FindAsync(id);
 
+            if (ItemLists == null)
+            {
+                return NotFound();
+            }
+
+            return ItemLists;
+        }
+
+        // POST: api/
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for
+        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        [HttpPost]
+        public async Task<ActionResult<ItemList>> PostItemList(ItemList itemlist)
+        {
+            _context.ItemLists.Add(itemlist);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetItemLists", new { id = itemlist.Id}, itemlist);
+        }
+
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<ItemList>> DeleteItems(int id)
+        {
+            var items = await _context.ItemLists.FindAsync(id);
             if (items == null)
             {
                 return NotFound();
             }
 
+            _context.ItemLists.Remove(items);
+            await _context.SaveChangesAsync();
+
             return items;
         }
 
-        // POST: api/Users
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPost]
-        public async Task<ActionResult<Item>> PostItems(Item item)
+        private bool ItemsExists(int id)
         {
-            _context.Items.Add(item);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetItems", new { id = item.Id }, item);
+            return _context.ItemLists.Any(e => e.Id == id);
         }
-    }
 
+
+    }
 }
 
 
