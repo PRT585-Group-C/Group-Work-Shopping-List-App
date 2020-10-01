@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GroupCWebAPI.ViewModels
 {
-    public class ItemModel
+    public class Item
     {
         public int Id { get; set; }
 
@@ -32,5 +32,9 @@ namespace GroupCWebAPI.ViewModels
         //public int CategoryId { get; set; }
         //public  CategoryViewModel Category { get; set; }
         //  dddd https://sensibledev.com/how-to-bind-dropdownlist-in-mvc/
+
+        public List<ItemListItem> ItemListItem { get; set; }
+
+
     }
 }

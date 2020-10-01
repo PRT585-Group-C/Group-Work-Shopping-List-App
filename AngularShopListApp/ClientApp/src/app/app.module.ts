@@ -14,7 +14,10 @@ import { AuthorizeGuard } from 'src/api-authorization/authorize.guard';
 import { AuthorizeInterceptor } from 'src/api-authorization/authorize.interceptor';
 
 import { NewitemModule } from './newitem/newitem.module';
-import { ItemListModule } from './item-list/item-list.module';
+
+import { ItemlistModule } from './itemlist/itemlist.module';
+
+import { PaymentModule } from './payment/payment.module';
 
 
 @NgModule({
@@ -31,12 +34,13 @@ import { ItemListModule } from './item-list/item-list.module';
     FormsModule,
     ApiAuthorizationModule,
     NewitemModule,
-    ItemListModule,
+    ItemlistModule,
+    PaymentModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent, },
-      // canActivate: [AuthorizeGuard] //
+      { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthorizeGuard] },
+      
     ])
   ],
   providers: [

@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using GroupCWebAPI._DAL.Services;
 using GroupCWebAPI._BAL.Services;
+using GroupCWebAPI.Data;
 
 namespace AngularShopListApp
 {
@@ -28,7 +29,8 @@ namespace AngularShopListApp
         // This method gets called by the runtime. Use this method to add services to the container.
         readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public void ConfigureServices(IServiceCollection services)
-        {
+        {   
+
             services.AddCors(options =>
             {
                 options.AddPolicy(name: MyAllowSpecificOrigins,
@@ -68,6 +70,8 @@ namespace AngularShopListApp
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

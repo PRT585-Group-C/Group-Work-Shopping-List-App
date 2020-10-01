@@ -4,8 +4,8 @@ using System.Linq;
 using GroupCWebAPI._BAL.Models;
 using GroupCWebAPI._DAL.Models;
 using GroupCWebAPI._DAL.Services;
-using AngularShopListApp.Data;
 using System;
+using GroupCWebAPI.Data;
 
 namespace GroupCWebAPI._DAL.Services
 {

@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using GroupCWebAPI.ViewModels;
 using GroupCWebAPI;
 using AngularShopListApp.Data;
+using GroupCWebAPI.Data;
 
 namespace GroupCWebAPI.Controllers
 {
@@ -24,14 +25,14 @@ namespace GroupCWebAPI.Controllers
 
         // GET: api/Items
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ItemModel>>> GetItems()
+        public async Task<ActionResult<IEnumerable<Item>>> GetItems()
         {
             return await _context.Items.ToListAsync();
         }
 
         // GET: api/Items/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<ItemModel>> GetItems(int id)
+        public async Task<ActionResult<Item>> GetItems(int id)
         {
             var items = await _context.Items.FindAsync(id);
 
@@ -47,7 +48,7 @@ namespace GroupCWebAPI.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<ItemModel>> PostItems(ItemModel item)
+        public async Task<ActionResult<Item>> PostItems(Item item)
         {
             _context.Items.Add(item);
             await _context.SaveChangesAsync();
