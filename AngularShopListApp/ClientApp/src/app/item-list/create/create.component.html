@@ -1,0 +1,54 @@
+<div class="container">
+  <h1>Create New Item</h1>
+
+  <a href="#" routerLink="/item-list/index" class="btn btn-primary">Back</a>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+
+    <div class="form-group">
+      <label for="Name">Name:</label>
+      <input formControlName="Name"
+             id="Name"
+             type="text"
+             class="form-control">
+      <div *ngIf="f.Name.touched && f.Name.invalid" class="alert alert-danger">
+        <div *ngIf="f.Name.errors.required">Name is required.</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="Price">Price</label>
+      <input formControlName="Price"
+             id="Price"
+             type="text"
+             class="form-control">
+
+      <div *ngIf="f.Price.touched && f.Price.invalid" class="alert alert-danger">
+        <div *ngIf="f.Price.errors.required">Price is required.</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="Barcode">Barcode</label>
+      <input formControlName="Barcode"
+             id="Barcode"
+             type="text"
+             class="form-control">
+
+      <div *ngIf="f.Barcode.touched && f.Barcode.invalid" class="alert alert-danger">
+        <div *ngIf="f.Barcode.errors.required">Barcode is required.</div>
+      </div>
+    </div>
+
+    <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>
+  </form>
+</div>
+
+<!--export interface Item {
+  Id: number;
+  Name: string;
+  Barcode: string;
+  createdDate: Date;
+  Size: string;
+  Price: string;
+}-->

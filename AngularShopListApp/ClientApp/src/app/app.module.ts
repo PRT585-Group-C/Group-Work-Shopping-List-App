@@ -14,6 +14,8 @@ import { AuthorizeGuard } from 'src/api-authorization/authorize.guard';
 import { AuthorizeInterceptor } from 'src/api-authorization/authorize.interceptor';
 
 import { NewitemModule } from './newitem/newitem.module';
+import { ItemListModule } from './item-list/item-list.module';
+
 
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import { NewitemModule } from './newitem/newitem.module';
     FormsModule,
     ApiAuthorizationModule,
     NewitemModule,
+    ItemListModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
