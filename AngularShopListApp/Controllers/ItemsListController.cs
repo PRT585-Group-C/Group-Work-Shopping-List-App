@@ -9,32 +9,33 @@ using GroupCWebAPI.ViewModels;
 using GroupCWebAPI;
 using AngularShopListApp.Data;
 using GroupCWebAPI.Data;
+using GroupCWebAPI.Models;
 
 namespace GroupCWebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ItemListModelController : ControllerBase
+    public class ItemsListController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
 
-        public ItemListModelController(ApplicationDbContext _context)
+        public ItemsListController(ApplicationDbContext _context)
         {
             this._context = _context;
         }
 
         // GET: api/ItemsList
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ItemList>>> GetItemLists()
+        public async Task<ActionResult<IEnumerable<ItemsList>>> GetItemsLists()
         {
-            return await _context.ItemLists.ToListAsync();
+            return await _context.ItemsLists.ToListAsync();
         }
 
         // GET: api/Items/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<ItemList>> GetItemLists(int id)
+        public async Task<ActionResult<ItemsList>> GetItemsLists(int id)
         {
-            var ItemLists = await _context.ItemLists.FindAsync(id);
+            var ItemLists = await _context.ItemsLists.FindAsync(id);
 
             if (ItemLists == null)
             {
@@ -48,25 +49,25 @@ namespace GroupCWebAPI.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<ItemList>> PostItemList(ItemList itemlist)
+        public async Task<ActionResult<ItemsList>> PostItemsList(ItemsList itemlist)
         {
-            _context.ItemLists.Add(itemlist);
+            _context.ItemsLists.Add(itemlist);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetItemLists", new { id = itemlist.Id}, itemlist);
+            return CreatedAtAction("GetItemsLists", new { id = itemlist.Id}, itemlist);
         }
 
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<ItemList>> DeleteItems(int id)
+        public async Task<ActionResult<ItemsList>> DeletesItems(int id)
         {
-            var items = await _context.ItemLists.FindAsync(id);
+            var items = await _context.ItemsLists.FindAsync(id);
             if (items == null)
             {
                 return NotFound();
             }
 
-            _context.ItemLists.Remove(items);
+            _context.ItemsLists.Remove(items);
             await _context.SaveChangesAsync();
 
             return items;
@@ -74,7 +75,7 @@ namespace GroupCWebAPI.Controllers
 
         private bool ItemsExists(int id)
         {
-            return _context.ItemLists.Any(e => e.Id == id);
+            return _context.ItemsLists.Any(e => e.Id == id);
         }
 
 

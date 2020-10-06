@@ -10,10 +10,10 @@
       <th width="220px">Action</th>
     </tr>
     <tr *ngFor="let post of itemlist">
-      <td>{{ post.itemListId }}</td>
+      <td>{{ post.id }}</td>
       <td>{{ post.name }}</td>
       <td>
-        <a href="#" [routerLink]="['/itemlist/', post.itemListId, 'view']" class="btn btn-info">View</a>
+        <a href="#" [routerLink]="['/itemlist/', post.id, 'view']" class="btn btn-info">View</a>
       <!--<button type="button" (click)="deletePost(post.id)" class="btn btn-danger">Delete</button>-->
       </td>
     </tr>

@@ -33,7 +33,7 @@ namespace GroupCWebAPI.ViewModels
         //public  CategoryViewModel Category { get; set; }
         //  dddd https://sensibledev.com/how-to-bind-dropdownlist-in-mvc/
 
-        public List<ItemListItem> ItemListItem { get; set; }
+      public List<ItemsListItem> ItemsListItem { get; set; }
 
 
     }

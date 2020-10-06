@@ -4,14 +4,16 @@ using GroupCWebAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AngularShopListApp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201006094208_itemslist")]
+    partial class itemslist
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -155,21 +157,6 @@ namespace AngularShopListApp.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Items");
-                });
-
-            modelBuilder.Entity("GroupCWebAPI.ViewModels.ItemsListItem", b =>
-                {
-                    b.Property<int>("ItemId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ItemsListId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ItemId", "ItemsListId");
-
-                    b.HasIndex("ItemsListId");
-
-                    b.ToTable("ItemsListItems");
                 });
 
             modelBuilder.Entity("GroupCWebAPI._DAL.Models.NewItem", b =>
@@ -414,21 +401,6 @@ namespace AngularShopListApp.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("GroupCWebAPI.ViewModels.ItemsListItem", b =>
-                {
-                    b.HasOne("GroupCWebAPI.ViewModels.Item", "Item")
-                        .WithMany("ItemsListItem")
-                        .HasForeignKey("ItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("GroupCWebAPI.Models.ItemsList", "ItemsList")
-                        .WithMany("ItemsListItem")
-                        .HasForeignKey("ItemsListId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

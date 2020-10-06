@@ -70,7 +70,7 @@ namespace AngularShopListApp
             {
                 configuration.RootPath = "ClientApp/dist";
             });
-
+            services.AddSwaggerGen();
 
         }
 
@@ -122,6 +122,16 @@ namespace AngularShopListApp
                 {
                     spa.UseAngularCliServer(npmScript: "start");
                 }
+            });
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
         }
     }
