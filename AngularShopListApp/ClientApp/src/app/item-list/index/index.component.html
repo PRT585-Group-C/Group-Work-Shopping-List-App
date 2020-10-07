@@ -1,7 +1,7 @@
 <div class="container">
   <h1>Item List</h1>
 
-  <a href="#" routerLink="/item-list/create/" class="btn btn-success">Create New Item</a>
+  <a href="#" routerLink="/item_list/create/" class="btn btn-success">Create New Item</a>
 
   <table class="table table-bordered">
     <tr>
@@ -17,8 +17,8 @@
         <td>{{ item.barcode }}</td>
         <td>{{ item.price }}</td>
         <td>
-          <a href="#" [routerLink]="['/item-list/', item.id, 'view']" class="btn btn-info">View</a>
-          <a href="#" [routerLink]="['/item-list/', item.id, 'edit']" class="btn btn-primary">Edit</a>
+          <a href="#" [routerLink]="['/item_list/', item.id, 'view']" class="btn btn-info">View</a>
+          <a href="#" [routerLink]="['/item_list/', item.id, 'edit']" class="btn btn-primary">Edit</a>
           <button type="button" (click)="deleteItem(item.id)" class="btn btn-danger">Delete</button>
         </td>
       </tr>

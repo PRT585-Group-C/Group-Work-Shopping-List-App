@@ -28,21 +28,54 @@ namespace GroupCWebAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ItemsList>>> GetItemsLists()
         {
-            return await _context.ItemsLists.ToListAsync();
+
+            //Character dbCharacter 
+
+           var temp =  await _context.ItemsLists.ToListAsync();
+            var test=  await _context.ItemsLists
+           .Include(e => e.ItemsListItem)
+           .ThenInclude(e => e.Item)
+           .ToListAsync();
+
+            return temp;
         }
 
         // GET: api/Items/5
         [HttpGet("{id}")]
         public async Task<ActionResult<ItemsList>> GetItemsLists(int id)
         {
-            var ItemLists = await _context.ItemsLists.FindAsync(id);
+            // var ItemLists = await _context.ItemsLists.FindAsync(id);
 
-            if (ItemLists == null)
+
+            //  var ItemLists = await _context.ItemsLists
+            //.Include(c => c.Id)
+            //   .Include(c => c.ItemsListItem).ThenInclude(cs => cs.Item)
+            //   .FirstOrDefaultAsync(c => c.Id == id);
+
+            try
             {
-                return NotFound();
-            }
+                //var itemLists = await _context.ItemsLists.FindAsync(id);
+                 var itemLists = await _context.ItemsLists
+                .Include(c => c.ItemsListItem)
+                .ThenInclude(cs => cs.Item)
+                .FirstOrDefaultAsync(c => c.Id == id);
 
-            return ItemLists;
+               // var itemLists = await _context.ItemsLists.Include(itemslist => itemslist.Id).ThenInclude(row => row.Item).First(itemslist => itemslist.Id == id);
+
+
+                if (itemLists == null)
+                {
+                    return NotFound();
+                }
+
+                return itemLists;
+
+            }
+            catch (Exception ex)
+            {
+                return Ok(ex);
+            }
+         
         }
 
         // POST: api/

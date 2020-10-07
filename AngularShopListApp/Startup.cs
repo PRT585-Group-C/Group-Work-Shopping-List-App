@@ -14,6 +14,8 @@ using Microsoft.Extensions.Hosting;
 using GroupCWebAPI._DAL.Services;
 using GroupCWebAPI._BAL.Services;
 using GroupCWebAPI.Data;
+using Newtonsoft.Json;
+using System.Text.Json;
 
 namespace AngularShopListApp
 {
@@ -29,8 +31,8 @@ namespace AngularShopListApp
         // This method gets called by the runtime. Use this method to add services to the container.
         readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public void ConfigureServices(IServiceCollection services)
-        {   
-
+        {
+          
             services.AddCors(options =>
             {
                 options.AddPolicy(name: MyAllowSpecificOrigins,
@@ -63,7 +65,9 @@ namespace AngularShopListApp
 
             services.AddAuthentication()
                 .AddIdentityServerJwt();
-            services.AddControllersWithViews();
+            services.AddControllersWithViews(
+                 ).AddNewtonsoftJson(options =>
+                  options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddRazorPages();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -71,6 +75,8 @@ namespace AngularShopListApp
                 configuration.RootPath = "ClientApp/dist";
             });
             services.AddSwaggerGen();
+
+           
 
         }
 

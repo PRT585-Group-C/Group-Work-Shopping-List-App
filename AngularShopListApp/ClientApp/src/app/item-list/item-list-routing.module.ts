@@ -6,11 +6,11 @@ import { CreateComponent } from './create/create.component';
 import { EditComponent } from './edit/edit.component';
 
 const routes: Routes = [
-  { path: 'item-list', redirectTo: 'item-list/index', pathMatch: 'full' },
-  { path: 'item-list/index', component: IndexComponent },
-  { path: 'item-list/:itemId/view', component: ViewComponent },
-  { path: 'item-list/create', component: CreateComponent },
-  { path: 'item-list/:itemId/edit', component: EditComponent }
+  { path: 'item_list', redirectTo: 'item_list/index', pathMatch: 'full' },
+  { path: 'item_list/index', component: IndexComponent },
+  { path: 'item_list/:itemId/view', component: ViewComponent },
+  { path: 'item_list/create', component: CreateComponent },
+  { path: 'item_list/:itemId/edit', component: EditComponent }
 ];
 
 @NgModule({

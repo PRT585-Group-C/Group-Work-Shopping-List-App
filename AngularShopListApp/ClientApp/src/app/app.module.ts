@@ -16,6 +16,7 @@ import { AuthorizeInterceptor } from 'src/api-authorization/authorize.intercepto
 import { NewitemModule } from './newitem/newitem.module';
 
 import { ItemlistModule } from './itemlist/itemlist.module';
+import { Item_listModule } from './item-list/item-list.module';
 
 import { PaymentModule } from './payment/payment.module';
 
@@ -34,6 +35,7 @@ import { PaymentModule } from './payment/payment.module';
     FormsModule,
     ApiAuthorizationModule,
     NewitemModule,
+    Item_listModule,
     ItemlistModule,
     PaymentModule,
     RouterModule.forRoot([

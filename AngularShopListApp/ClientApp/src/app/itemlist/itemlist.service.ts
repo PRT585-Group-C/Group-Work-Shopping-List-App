@@ -5,6 +5,8 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { Itemlist } from './itemlist';
+import { Itemslistitem } from './itemslistitem';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -43,6 +45,20 @@ export class ItemlistService {
 
   delete(id) {
     return this.httpClient.delete<Itemlist>(this.apiURL + '/ItemsList/' + id, this.httpOptions)
+      .pipe(
+        catchError(this.errorHandler)
+      )
+  }
+
+  getAllItems(): Observable<Itemlist[]> {
+    return this.httpClient.get<Itemlist[]>(this.apiURL + '/ItemsModel/')
+      .pipe(
+        catchError(this.errorHandler)
+      )
+  }
+
+  createItemListItem(post): Observable<Itemslistitem> {
+    return this.httpClient.post<Itemslistitem>(this.apiURL + '/ItemsListItem/', JSON.stringify(post), this.httpOptions)
       .pipe(
         catchError(this.errorHandler)
       )
