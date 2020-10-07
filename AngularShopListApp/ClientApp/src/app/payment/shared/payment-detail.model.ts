@@ -5,3 +5,4 @@ export class PaymentDetail {
     ExpirationDate: string;
     CVV: string;
 }
+

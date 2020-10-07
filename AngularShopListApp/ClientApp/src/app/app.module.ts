@@ -16,9 +16,11 @@ import { AuthorizeInterceptor } from 'src/api-authorization/authorize.intercepto
 import { NewitemModule } from './newitem/newitem.module';
 
 import { ItemlistModule } from './itemlist/itemlist.module';
-import { Item_listModule } from './item-list/item-list.module';
 
 import { PaymentModule } from './payment/payment.module';
+import { PaymentDetailService } from './payment/shared/payment-detail.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -35,9 +37,10 @@ import { PaymentModule } from './payment/payment.module';
     FormsModule,
     ApiAuthorizationModule,
     NewitemModule,
-    Item_listModule,
     ItemlistModule,
     PaymentModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
@@ -46,7 +49,9 @@ import { PaymentModule } from './payment/payment.module';
     ])
   ],
   providers: [
+    //PaymentDetailService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true }
+    
   ],
   bootstrap: [AppComponent]
 })

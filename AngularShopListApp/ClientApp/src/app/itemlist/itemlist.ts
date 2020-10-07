@@ -1,4 +1,4 @@
 export interface Itemlist {
-  id: number;
+  itemListId: number;
   name: string;
 }

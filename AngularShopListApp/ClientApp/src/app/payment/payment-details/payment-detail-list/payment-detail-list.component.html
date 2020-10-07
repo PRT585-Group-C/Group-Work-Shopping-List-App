@@ -1,1 +1,22 @@
-<p>payment-detail-list works!</p>
+<!--<table class="table table-hover">
+       <tr *ngFor="let PaymentDetail of paymentdetails">
+    <td>{{PaymentDetail.cardOwnerName}}</td>
+    <td>{{PaymentDetail.cardNumber}}</td>
+    <td>{{PaymentDetail.expirationDate}}</td>
+ </tr>
+</table>
+-->
+
+  
+<table class="table table-hover">
+    <tr *ngFor="let PaymentDetail of paymentdetails">
+ <td (click)="populateForm(paymentdetails)">{{PaymentDetail.cardOwnerName}}</td>
+ <td (click)="populateForm(paymentdetails)">{{PaymentDetail.cardNumber}}</td>
+ <td (click)="populateForm(paymentdetails)">{{PaymentDetail.expirationDate}}</td>
+ <td>
+    <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(paymentdetails.pmId)"></i>
+  </td>
+</tr>
+</table>
+
+

@@ -5,8 +5,6 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { Itemlist } from './itemlist';
-import { Itemslistitem } from './itemslistitem';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -23,42 +21,28 @@ export class ItemlistService {
   constructor(private httpClient: HttpClient) { }
 
   getAll(): Observable<Itemlist[]> {
-    return this.httpClient.get<Itemlist[]>(this.apiURL + '/ItemsList/')
+    return this.httpClient.get<Itemlist[]>(this.apiURL + '/ItemListModel/')
       .pipe(
         catchError(this.errorHandler)
       )
   }
 
   create(post): Observable<Itemlist> {
-    return this.httpClient.post<Itemlist>(this.apiURL + '/ItemsList/', JSON.stringify(post), this.httpOptions)
+    return this.httpClient.post<Itemlist>(this.apiURL + '/ItemListModel/', JSON.stringify(post), this.httpOptions)
       .pipe(
         catchError(this.errorHandler)
       )
   }
 
   find(id): Observable<Itemlist> {
-    return this.httpClient.get<Itemlist>(this.apiURL + '/ItemsList/' + id)
+    return this.httpClient.get<Itemlist>(this.apiURL + '/ItemListModel/' + id)
       .pipe(
         catchError(this.errorHandler)
       )
   }
 
   delete(id) {
-    return this.httpClient.delete<Itemlist>(this.apiURL + '/ItemsList/' + id, this.httpOptions)
-      .pipe(
-        catchError(this.errorHandler)
-      )
-  }
-
-  getAllItems(): Observable<Itemlist[]> {
-    return this.httpClient.get<Itemlist[]>(this.apiURL + '/ItemsModel/')
-      .pipe(
-        catchError(this.errorHandler)
-      )
-  }
-
-  createItemListItem(post): Observable<Itemslistitem> {
-    return this.httpClient.post<Itemslistitem>(this.apiURL + '/ItemsListItem/', JSON.stringify(post), this.httpOptions)
+    return this.httpClient.delete<Itemlist>(this.apiURL + '/ItemListModel/' + id, this.httpOptions)
       .pipe(
         catchError(this.errorHandler)
       )
