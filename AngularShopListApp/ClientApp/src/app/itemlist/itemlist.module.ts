@@ -8,16 +8,13 @@ import { CreateComponent } from './create/create.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { AutocompleteLibModule } from 'angular-ng-autocomplete';
-
 @NgModule({
   declarations: [IndexComponent, ViewComponent, CreateComponent],
   imports: [
     CommonModule,
     ItemlistRoutingModule,
     FormsModule,
-    ReactiveFormsModule,
-    AutocompleteLibModule
+    ReactiveFormsModule
   ]
 })
 export class ItemlistModule { }

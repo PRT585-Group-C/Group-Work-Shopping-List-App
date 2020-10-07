@@ -84,22 +84,6 @@ namespace AngularShopListApp.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("GroupCWebAPI.Models.ItemsList", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ItemsLists");
-                });
-
             modelBuilder.Entity("GroupCWebAPI.Models.PaymentDetail", b =>
                 {
                     b.Property<int>("PMId")
@@ -128,7 +112,7 @@ namespace AngularShopListApp.Data.Migrations
                     b.ToTable("PaymentDetails");
                 });
 
-            modelBuilder.Entity("GroupCWebAPI.ViewModels.Item", b =>
+            modelBuilder.Entity("GroupCWebAPI.ViewModels.ItemModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -157,19 +141,41 @@ namespace AngularShopListApp.Data.Migrations
                     b.ToTable("Items");
                 });
 
-            modelBuilder.Entity("GroupCWebAPI.ViewModels.ItemsListItem", b =>
+            modelBuilder.Entity("GroupCWebAPI.ViewModels.ItemList", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("createdDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("createdUser")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ItemLists");
+                });
+
+            modelBuilder.Entity("GroupCWebAPI.ViewModels.ItemListItem", b =>
                 {
                     b.Property<int>("ItemId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ItemsListId")
+                    b.Property<int>("ItemListId")
                         .HasColumnType("int");
 
-                    b.HasKey("ItemId", "ItemsListId");
+                    b.HasKey("ItemId", "ItemListId");
 
-                    b.HasIndex("ItemsListId");
+                    b.HasIndex("ItemListId");
 
-                    b.ToTable("ItemsListItems");
+                    b.ToTable("ItemListItems");
                 });
 
             modelBuilder.Entity("GroupCWebAPI._DAL.Models.NewItem", b =>
@@ -416,17 +422,17 @@ namespace AngularShopListApp.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("GroupCWebAPI.ViewModels.ItemsListItem", b =>
+            modelBuilder.Entity("GroupCWebAPI.ViewModels.ItemListItem", b =>
                 {
                     b.HasOne("GroupCWebAPI.ViewModels.Item", "Item")
-                        .WithMany("ItemsListItem")
+                        .WithMany("ItemListItem")
                         .HasForeignKey("ItemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("GroupCWebAPI.Models.ItemsList", "ItemsList")
-                        .WithMany("ItemsListItem")
-                        .HasForeignKey("ItemsListId")
+                    b.HasOne("GroupCWebAPI.ViewModels.ItemList", "ItemList")
+                        .WithMany("ItemListItem")
+                        .HasForeignKey("ItemListId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

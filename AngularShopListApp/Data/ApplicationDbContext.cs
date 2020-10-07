@@ -24,16 +24,16 @@ namespace GroupCWebAPI.Data
         public DbSet<NewItem> NewItem { get; set; }
         public DbSet<Item> Items { get; set; }
 
-        public DbSet<ItemsList> ItemsLists { get; set; }
-      public DbSet<ItemsListItem> ItemsListItems { get; set; }
+        public DbSet<ItemList> ItemLists { get; set; }
+       public DbSet<ItemListItem> ItemListItems { get; set; }
        public DbSet<PaymentDetail> PaymentDetails { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
       {
            base.OnModelCreating(modelBuilder);
           
-           modelBuilder.Entity<ItemsListItem>()
-          .HasKey(t => new { t.ItemId, t.ItemsListId });
+            modelBuilder.Entity<ItemListItem>()
+                .HasKey(t => new { t.ItemId, t.ItemListId });
             /*
            modelBuilder.Entity<ItemListItemsModel>()
                .HasOne(pt => pt.Item)
