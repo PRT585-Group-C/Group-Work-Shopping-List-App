@@ -7,7 +7,7 @@ import { CreateComponent } from './create/create.component';
 
 const routes: Routes = [{ path: 'itemlist', redirectTo: 'itemlist/index', pathMatch: 'full' },
   { path: 'itemlist/index', component: IndexComponent },
-  { path: 'itemlist/:id/view', component: ViewComponent },
+  { path: 'itemlist/:itemlistId/view', component: ViewComponent },
   { path: 'itemlist/create', component: CreateComponent },];
 
 @NgModule({

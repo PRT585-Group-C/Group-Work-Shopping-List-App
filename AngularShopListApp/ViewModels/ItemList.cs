@@ -7,34 +7,24 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GroupCWebAPI.ViewModels
 {
-    public class Item
+    public class ItemList
     {
         public int Id { get; set; }
 
         [Required]
         public string Name { get; set; }
 
-        public string Barcode { get; set; }
-
         [DataType(DataType.Date)]
         public DateTime createdDate { get; set; }
 
-        //[EmailAddress]
-       // [RegularExpression(@"^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([\.\-‌​]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})$", ErrorMessage = "Email is not valid")]
+        public string createdUser { get; set; }
 
-        public string Size { get; set; }
-
-        [Required]
-        public string Price { get; set; }
+        public List<ItemListItem> ItemListItem { get; set; }
 
 
         //[ForeignKey("Category")]
         //public int CategoryId { get; set; }
         //public  CategoryViewModel Category { get; set; }
         //  dddd https://sensibledev.com/how-to-bind-dropdownlist-in-mvc/
-
-        public List<ItemListItem> ItemListItem { get; set; }
-
-
     }
 }

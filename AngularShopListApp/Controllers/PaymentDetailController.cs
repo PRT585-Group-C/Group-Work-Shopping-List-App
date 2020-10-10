@@ -60,9 +60,9 @@ namespace GroupCWebAPI.Controllers
                 }
 
                 return NoContent();
-            }
+        }
 
-            // GET: api/PaymentDetail/5
+            //GET: api/PaymentDetail/5
             [HttpGet("{id}")]
             public async Task<ActionResult<PaymentDetail>> GetPaymentDetail(int id)
             {
