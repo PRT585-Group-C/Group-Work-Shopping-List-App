@@ -31,8 +31,8 @@ namespace GroupCWebAPI.Controllers
 
             //Character dbCharacter 
 
-           var temp =  await _context.ItemsLists.ToListAsync();
-            var test=  await _context.ItemsLists
+           var temp =  await _context.ItemsList.ToListAsync();
+            var test=  await _context.ItemsList
            .Include(e => e.ItemsListItem)
            .ThenInclude(e => e.Item)
            .ToListAsync();
@@ -55,7 +55,7 @@ namespace GroupCWebAPI.Controllers
             try
             {
                 //var itemLists = await _context.ItemsLists.FindAsync(id);
-                 var itemLists = await _context.ItemsLists
+                 var itemLists = await _context.ItemsList
                 .Include(c => c.ItemsListItem)
                 .ThenInclude(cs => cs.Item)
                 .FirstOrDefaultAsync(c => c.Id == id);
@@ -84,7 +84,7 @@ namespace GroupCWebAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<ItemsList>> PostItemsList(ItemsList itemlist)
         {
-            _context.ItemsLists.Add(itemlist);
+            _context.ItemsList.Add(itemlist);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetItemsLists", new { id = itemlist.Id}, itemlist);
@@ -94,13 +94,13 @@ namespace GroupCWebAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<ItemsList>> DeletesItems(int id)
         {
-            var items = await _context.ItemsLists.FindAsync(id);
+            var items = await _context.ItemsList.FindAsync(id);
             if (items == null)
             {
                 return NotFound();
             }
 
-            _context.ItemsLists.Remove(items);
+            _context.ItemsList.Remove(items);
             await _context.SaveChangesAsync();
 
             return items;
@@ -108,7 +108,7 @@ namespace GroupCWebAPI.Controllers
 
         private bool ItemsExists(int id)
         {
-            return _context.ItemsLists.Any(e => e.Id == id);
+            return _context.ItemsList.Any(e => e.Id == id);
         }
 
 
@@ -172,7 +172,8 @@ namespace GroupCWebAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Item>> DeleteItems(int id)
         {
-            var items = await _context.Items.FindAsync(id);
+            var items = await _context.
+.FindAsync(id);
             if (items == null)
             {
                 return NotFound();

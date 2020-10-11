@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using GroupCWebAPI.Models;
 
 namespace GroupCWebAPI.ViewModels
 {
@@ -33,7 +34,7 @@ namespace GroupCWebAPI.ViewModels
         //public  CategoryViewModel Category { get; set; }
         //  dddd https://sensibledev.com/how-to-bind-dropdownlist-in-mvc/
 
-        public List<ItemListItem> ItemListItem { get; set; }
+        public List<ItemsListItem> ItemsListItem { get; set; }
 
 
     }

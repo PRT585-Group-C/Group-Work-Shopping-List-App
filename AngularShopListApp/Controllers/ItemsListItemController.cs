@@ -40,7 +40,7 @@ namespace GroupCWebAPI.Controllers
             
             try
             {
-                ItemsList itemsList = await _context.ItemsLists
+                ItemsList itemsList = await _context.ItemsList
                     //.AsNoTracking()
                     //.Include(c => c.ItemsListItem).ThenInclude(cs => cs.Item)
                     .AsNoTracking()
@@ -49,7 +49,8 @@ namespace GroupCWebAPI.Controllers
                 {
                     return NotFound("itemsList not found!");
                 }
-                Item item = await _context.Items
+                Item item = await _context.Item
+
                     .AsNoTracking()
                     .FirstOrDefaultAsync(s => s.Id == ItemsListItemObj.ItemId);
                 if (item == null)
@@ -67,7 +68,7 @@ namespace GroupCWebAPI.Controllers
              
 
                
-                await _context.ItemsListItems.AddAsync(ItemsListItemObj);
+                await _context.ItemsListItem.AddAsync(ItemsListItemObj);
                 await _context.SaveChangesAsync();
 
                 ItemsListItemObj.Item = item;
@@ -86,7 +87,7 @@ namespace GroupCWebAPI.Controllers
 
         private bool ItemsExists(int id)
         {
-            return _context.ItemsLists.Any(e => e.Id == id);
+            return _context.ItemsList.Any(e => e.Id == id);
         }
 
         /*

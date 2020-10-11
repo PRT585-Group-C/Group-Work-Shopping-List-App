@@ -23,18 +23,20 @@ namespace GroupCWebAPI.Controllers
             this._context = _context;
         }
 
-        // GET: api/Items
+        // GET: api/
+
+
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Item>>> GetItems()
         {
-            return await _context.Items.ToListAsync();
+            return await _context.Item.ToListAsync();
         }
 
         // GET: api/Items/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Item>> GetItems(int id)
         {
-            var items = await _context.Items.FindAsync(id);
+            var items = await _context.Item.FindAsync(id);
 
             if (items == null)
             {
@@ -50,7 +52,7 @@ namespace GroupCWebAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Item>> PostItems(Item item)
         {
-            _context.Items.Add(item);
+            _context.Item.Add(item);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetItems", new { id = item.Id }, item);
