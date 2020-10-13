@@ -12,7 +12,7 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { ApiAuthorizationModule } from 'src/api-authorization/api-authorization.module';
 import { AuthorizeGuard } from 'src/api-authorization/authorize.guard';
 import { AuthorizeInterceptor } from 'src/api-authorization/authorize.interceptor';
-
+import { UploadImageModule } from 'src/app/upload-image/upload-image.module'
 import { NewitemModule } from './newitem/newitem.module';
 
 import { ItemlistModule } from './itemlist/itemlist.module';
@@ -29,7 +29,7 @@ import { ToastrModule } from 'ngx-toastr';
     NavMenuComponent,
     HomeComponent,
     CounterComponent,
-    FetchDataComponent
+    FetchDataComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -38,6 +38,7 @@ import { ToastrModule } from 'ngx-toastr';
     ApiAuthorizationModule,
     NewitemModule,
     ItemlistModule,
+    UploadImageModule,
     PaymentModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
