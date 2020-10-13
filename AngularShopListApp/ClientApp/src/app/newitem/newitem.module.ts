@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { UploadImageModule } from '../upload-image/upload-image.module';
 import { NewitemRoutingModule } from './newitem-routing.module';
 import { IndexComponent } from './index/index.component';
 import { ViewComponent } from './view/view.component';
@@ -16,7 +16,8 @@ import { ItemSearchComponent } from './item-search/item-search.component';
     CommonModule,
     NewitemRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    UploadImageModule
   ]
 })
 export class NewitemModule { }

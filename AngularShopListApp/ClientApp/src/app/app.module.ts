@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-
+import { UploadImageModule } from 'src/app/upload-image/upload-image.module'
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
@@ -12,7 +12,7 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { ApiAuthorizationModule } from 'src/api-authorization/api-authorization.module';
 import { AuthorizeGuard } from 'src/api-authorization/authorize.guard';
 import { AuthorizeInterceptor } from 'src/api-authorization/authorize.interceptor';
-
+import { PaymentDetailService } from './payment/shared/payment-detail.service';
 import { NewitemModule } from './newitem/newitem.module';
 
 import { ItemlistModule } from './itemlist/itemlist.module';
@@ -39,6 +39,7 @@ import { AppMaterialModule } from './app-material.module';
     HttpClientModule,
     FormsModule,
     AppMaterialModule,
+    UploadImageModule,
     ApiAuthorizationModule,
     NewitemModule,
     ItemlistModule,
