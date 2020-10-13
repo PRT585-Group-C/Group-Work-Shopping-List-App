@@ -12,15 +12,17 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { ApiAuthorizationModule } from 'src/api-authorization/api-authorization.module';
 import { AuthorizeGuard } from 'src/api-authorization/authorize.guard';
 import { AuthorizeInterceptor } from 'src/api-authorization/authorize.interceptor';
-import { UploadImageModule } from 'src/app/upload-image/upload-image.module'
+
 import { NewitemModule } from './newitem/newitem.module';
 
 import { ItemlistModule } from './itemlist/itemlist.module';
 
 import { PaymentModule } from './payment/payment.module';
-import { PaymentDetailService } from './payment/shared/payment-detail.service';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { AppMaterialModule } from './app-material.module';
+
 
 
 @NgModule({
@@ -30,15 +32,16 @@ import { ToastrModule } from 'ngx-toastr';
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
+    
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+    AppMaterialModule,
     ApiAuthorizationModule,
     NewitemModule,
     ItemlistModule,
-    UploadImageModule,
     PaymentModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),

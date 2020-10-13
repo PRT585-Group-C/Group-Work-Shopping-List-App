@@ -9,7 +9,6 @@ import { EditComponent } from './edit/edit.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ItemSearchComponent } from './item-search/item-search.component';
-import { UploadImageModule } from '../upload-image/upload-image.module';
 
 @NgModule({
   declarations: [IndexComponent, ViewComponent, CreateComponent, EditComponent, ItemSearchComponent],
@@ -17,9 +16,7 @@ import { UploadImageModule } from '../upload-image/upload-image.module';
     CommonModule,
     NewitemRoutingModule,
     FormsModule,
-    ReactiveFormsModule,
-    UploadImageModule,
-    
+    ReactiveFormsModule
   ]
 })
 export class NewitemModule { }

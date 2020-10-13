@@ -46,12 +46,9 @@ postPaymentDetail(formData: PaymentDetail){
   }
   
 
-  //put and delete
-  putPaymentDetail() {
-    return this.http.put(this.rootURL + '/PaymentDetail/'+ this.formData.PMId, this.formData);
-  }
-  deletePaymentDetail(id) {
-    return this.http.delete(this.rootURL + '/PaymentDetail/'+ id);
+  
+  deletePaymentDetail(pmId) {
+    return this.http.delete(this.rootURL + '/PaymentDetail/'+ pmId);
   }
 
 

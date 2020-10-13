@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
+
 /* Provide sufficient contrast against white background */
 a {
   color: #0366d6;
@@ -36,3 +37,6 @@ input.ng-valid{
 table tr:hover{
   cursor: pointer;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

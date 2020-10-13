@@ -8,7 +8,7 @@ import { PaymentDetailService } from '../../shared/payment-detail.service';
   selector: 'app-payment-detail-list',
   templateUrl: './payment-detail-list.component.html',
   styles: []
-  //styleUrls: ['./payment-detail-list.component.css']
+  
 })
 export class PaymentDetailListComponent implements OnInit {
   
@@ -24,17 +24,17 @@ export class PaymentDetailListComponent implements OnInit {
     })  
   }
 
-  //editing for update function 
+  
   populateForm(paymentdetails: PaymentDetail) {
     this.service.formData = Object.assign({},paymentdetails);
-    //this.service.formData = paymentdetails;
+    this.service.formData = paymentdetails;
   }
 
   onDelete(pmId) {
     if (confirm('Are you sure to delete this record ?')) {
       this.service.deletePaymentDetail(pmId)
         .subscribe(res => {
-          
+          this.service.getAll();
           this.toastr.warning('Deleted successfully', 'Payment Detail Register');
         },
           err => {
@@ -42,5 +42,7 @@ export class PaymentDetailListComponent implements OnInit {
           })
     }
   }
+  
+
 
 }
