@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UploadFilesService } from 'src/app/upload-image/services/upload-image.service';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-upload-image',
@@ -16,7 +17,7 @@ export class UploadImageComponent implements OnInit {
 
   fileInfos: Observable<any>;
 
-  constructor(private uploadService: UploadFilesService) { }
+  constructor(private uploadService: UploadFilesService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.fileInfos = this.uploadService.getFiles();
@@ -56,13 +57,21 @@ export class UploadImageComponent implements OnInit {
 
   upload(idx, file): void {
     this.progressInfos[idx] = { value: 0, fileName: file.name };
+    
+    var id = this.route.snapshot.params['newiemId'];
+    console.log(id);
+    console.log(file.name);
 
     this.uploadService.upload(file).subscribe(
       event => {
         if (event.type === HttpEventType.UploadProgress) {
           this.progressInfos[idx].percentage = Math.round(100 * event.loaded / event.total);
+          console.log('progressInfos')
         } else if (event instanceof HttpResponse) {
           this.fileInfos = this.uploadService.getFiles();
+          //alert('File Uplodeded ');
+          console.log(this.fileInfos)
+          console.log('HttpResponse')
         }
       },
       err => {
