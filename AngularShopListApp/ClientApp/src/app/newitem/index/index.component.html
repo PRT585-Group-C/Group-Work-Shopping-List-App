@@ -1,6 +1,5 @@
 <div class="container">
   <h1>Angular New Item List</h1>
-  <app-upload-image></app-upload-image>
   <a href="#" routerLink="/newitem/create/" class="btn btn-success">Create New Item</a>
 
   <table class="table table-bordered">
@@ -25,7 +24,7 @@
         <button type="button" (click)="deletePost(post.id)" class="btn btn-danger">Delete</button>
       </td>
       <td>
-        <img src="{{ 'https://localhost:44341/Resources/Images/RDH.jpg' }}" alt="{{ newitem.name }}" height="80px">
+        <img src="{{ 'https://localhost:44341/Resources/Images/'+newitem.pic }}" alt="{{ newitem.name }}" height="80px">
       </td>
     </tr>
   </table>

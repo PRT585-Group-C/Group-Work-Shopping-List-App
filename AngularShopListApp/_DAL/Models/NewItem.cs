@@ -27,13 +27,15 @@ namespace GroupCWebAPI._DAL.Models
 
         public string Price { get; set; }
 
+        public string Pic { get; set; }
 
-       // public Languages Languages { get; set; }
+
+        // public Languages Languages { get; set; }
 
 
-       // public int CategoryId { get; set; }
+        // public int CategoryId { get; set; }
 
-       // public  CategoryViewModel Category { get; set; }
+        // public  CategoryViewModel Category { get; set; }
         //  https://sensibledev.com/how-to-bind-dropdownlist-in-mvc/
     }
 }

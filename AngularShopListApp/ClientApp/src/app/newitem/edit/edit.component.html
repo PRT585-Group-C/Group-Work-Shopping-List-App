@@ -40,11 +40,16 @@
              type="text"
              class="form-control">
       <div *ngIf="f.price.touched && f.price.invalid" class="alert alert-danger">
-        <div *ngIf="f.price.errors.required">Barcode is required.</div>
+        <div *ngIf="f.price.errors.required">Price  is required.</div>
       </div>
     </div>
-
     <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Update</button>
   </form>
+  <div>
+    <label for="image">Image:</label>
+    <app-upload-image></app-upload-image>
+    <a href="#" routerLink="/newitem/index" class="btn btn-primary">Back</a>
+  </div>
+
 </div>
 

@@ -51,6 +51,8 @@ namespace GroupCWebAPI.Controllers
                 vmNewItem.createdDate = item.createdDate; //.ToString();
                 vmNewItem.Size = item.Size;
                 vmNewItem.Price = item.Price;
+                vmNewItem.Pic = item.Pic;
+                Console.WriteLine(item.Pic);
                 /*
                 if (item.Salary > 5)
                 {
@@ -92,6 +94,7 @@ namespace GroupCWebAPI.Controllers
                 vmNewItem.createdDate = item.createdDate; //.ToString();
                 vmNewItem.Size = item.Size;
                 vmNewItem.Price = item.Price;
+                vmNewItem.Pic = item.Pic;
                 /*
                 if (item.Salary > 5)
                 {
@@ -132,6 +135,7 @@ namespace GroupCWebAPI.Controllers
             vmNewItem.createdDate = todoItem.createdDate; //.ToString();
             vmNewItem.Size = todoItem.Size;
             vmNewItem.Price = todoItem.Price;
+            vmNewItem.Pic = todoItem.Pic;
 
             var vmList = new List<NewItemViewModel>();
             vmList.Add(vmNewItem);
@@ -174,6 +178,7 @@ namespace GroupCWebAPI.Controllers
             newIntemBModels.Id = newItem.Id;
             newIntemBModels.Size = newItem.Size;
             newIntemBModels.Price = newItem.Price;
+            newIntemBModels.Pic = newItem.Pic;
             _NewItemService.Update(newIntemBModels);
 
             return Ok(newIntemBModels);
@@ -194,6 +199,7 @@ namespace GroupCWebAPI.Controllers
             newIntemBModels.createdDate = newItem.createdDate; //.ToString();
             newIntemBModels.Size = newItem.Size;
             newIntemBModels.Price = newItem.Price;
+            newIntemBModels.Pic = newItem.Pic;
             _NewItemService.Add(newIntemBModels);
 
             return Ok(newIntemBModels);

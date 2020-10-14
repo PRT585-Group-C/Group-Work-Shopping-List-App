@@ -3,5 +3,6 @@ export interface Newitem {
     name: string;
     barcode: string;
     size: string;
-    price: string;
+  price: string;
+  pic: string;
 }

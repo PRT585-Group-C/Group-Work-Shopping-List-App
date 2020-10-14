@@ -1,6 +1,6 @@
 <div class="container">
   <h1>View Item</h1>
-  <app-upload-image></app-upload-image>
+
   <a href="#" routerLink="/newitem/index" class="btn btn-primary">Back</a>
 
   <div>
@@ -13,8 +13,14 @@
   </div>
 
   <div>
-    <strong>arcode:</strong>
+    <strong>Barcode:</strong>
     <p>{{ newitem.barcode }}</p>
   </div>
+  <div>
+    <label for="image">Image:</label>
+    <img src="{{ 'https://localhost:44341/Resources/Images/'+newitem.pic }}" alt="{{ newitem.name }}" height="80px">
+    <!--<app-upload-image></app-upload-image>-->
+  </div>
+
 
 </div>

@@ -42,7 +42,8 @@ namespace GroupCWebAPI._DAL.Services
                     Name = item.Name,
                     createdDate = item.createdDate,
                     Size = item.Size,
-                    Price = item.Price
+                    Price = item.Price,
+                    Pic = item.Pic
                 });
             }
 
@@ -64,7 +65,8 @@ namespace GroupCWebAPI._DAL.Services
                     Name = item.Name,
                     createdDate = item.createdDate,
                     Size = item.Size,
-                    Price = item.Price
+                    Price = item.Price,
+                    Pic = item.Pic
                 });
             }
 
@@ -106,7 +108,8 @@ namespace GroupCWebAPI._DAL.Services
                     Name = item.Name,
                     createdDate = item.createdDate,
                     Size = item.Size,
-                    Price = item.Price
+                    Price = item.Price,
+                      Pic = item.Pic
                 });
             }
 
@@ -136,7 +139,8 @@ namespace GroupCWebAPI._DAL.Services
                 Name = model.Name,
                 createdDate = model.createdDate,
                 Size = model.Size,
-                Price = model.Price
+                Price = model.Price,
+                Pic = model.Pic
             };
             context.NewItem.Add(item);
             context.SaveChanges();
@@ -156,8 +160,9 @@ namespace GroupCWebAPI._DAL.Services
                     Name = item.Name,
                     createdDate = item.createdDate,
                     Size = item.Size,
-                    Price = item.Price
-                };
+                    Price = item.Price,
+                    Pic=item.Pic
+    };
 
             }
 

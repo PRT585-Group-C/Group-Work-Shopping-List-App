@@ -25,6 +25,10 @@ namespace GroupCWebAPI._BAL.Models
 
 
         public string Price { get; set; }
+       
+
+        public string Pic { get; set; }
+
         public bool IsRetired { get; internal set; }
     }
 }

@@ -28,7 +28,7 @@ namespace GroupCWebAPI.ViewModels
         [Required]
         public string Price { get; set; }
 
-
+        public string Pic { get; set; }
         //[ForeignKey("Category")]
         //public int CategoryId { get; set; }
         //public  CategoryViewModel Category { get; set; }

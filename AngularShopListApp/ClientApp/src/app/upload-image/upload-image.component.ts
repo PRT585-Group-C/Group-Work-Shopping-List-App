@@ -3,6 +3,8 @@ import { UploadFilesService } from 'src/app/upload-image/services/upload-image.s
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NewitemService } from '../newitem/newitem.service';
+import { Newitem } from '../newitem/newitem';
 
 @Component({
   selector: 'app-upload-image',
@@ -14,10 +16,11 @@ export class UploadImageComponent implements OnInit {
   selectedFiles: FileList;
   progressInfos = [];
   message = '';
+  newitem: Newitem;
 
   fileInfos: Observable<any>;
 
-  constructor(private uploadService: UploadFilesService, private route: ActivatedRoute) { }
+  constructor(private uploadService: UploadFilesService, private route: ActivatedRoute, public newitemservce: NewitemService) { }
 
   ngOnInit() {
     this.fileInfos = this.uploadService.getFiles();
@@ -72,6 +75,18 @@ export class UploadImageComponent implements OnInit {
           //alert('File Uplodeded ');
           console.log(this.fileInfos)
           console.log('HttpResponse')
+
+          this.newitemservce.find(id).subscribe((data: Newitem) => {
+            console.log('find');
+            console.log(data[0]);
+            this.newitem = data[0];
+            this.newitem.pic = file.name;
+
+            this.newitemservce.update(id, this.newitem).subscribe(res => {
+              console.log('new item updated successfully!');
+            })
+
+          });
         }
       },
       err => {
