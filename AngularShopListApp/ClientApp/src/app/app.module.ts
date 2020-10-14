@@ -14,6 +14,7 @@ import { AuthorizeGuard } from 'src/api-authorization/authorize.guard';
 import { AuthorizeInterceptor } from 'src/api-authorization/authorize.interceptor';
 import { PaymentDetailService } from './payment/shared/payment-detail.service';
 import { NewitemModule } from './newitem/newitem.module';
+import { Item_listModule } from './item-list/item-list.module';
 
 import { ItemlistModule } from './itemlist/itemlist.module';
 
@@ -43,6 +44,7 @@ import { AppMaterialModule } from './app-material.module';
     ApiAuthorizationModule,
     NewitemModule,
     ItemlistModule,
+    Item_listModule,
     PaymentModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
