@@ -24,8 +24,15 @@
         <button type="button" (click)="deletePost(post.id)" class="btn btn-danger">Delete</button>
       </td>
       <td>
-        <img src="{{ 'https://localhost:44341/Resources/Images/'+newitem.pic }}" alt="{{ newitem.name }}" height="80px">
+        <img src="{{ 'https://localhost:44341/Resources/Images/'+newitem.pic }}" onerror="this.style.display='none'" alt="{{ newitem.name }}" height="80px">
       </td>
     </tr>
   </table>
+
+
 </div>
+<script>
+function defaultImg(img){
+    $(img).hide()
+}
+</script>
